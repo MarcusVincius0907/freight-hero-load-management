@@ -5,9 +5,13 @@ import { StrictMode } from 'react';
 import { SplashScreen } from './screens/splash';
 
 import './application.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { LoadProvider } from './features/loads/LoadContext';
 
 const main = document.getElementById('main');
 const root = createRoot(main!);
+
+const queryClient = new QueryClient()
 
 const browserRouter = createBrowserRouter([
   {
@@ -18,6 +22,10 @@ const browserRouter = createBrowserRouter([
 
 root.render(
   <StrictMode>
-    <RouterProvider router={browserRouter} />
+    <QueryClientProvider client={queryClient}>
+      <LoadProvider>
+        <RouterProvider router={browserRouter} />
+      </LoadProvider>
+    </QueryClientProvider>
   </StrictMode>
 );
