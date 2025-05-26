@@ -13,6 +13,7 @@ import LoadSkeleton from './LoadSkeleton';
 import { Toaster } from '@/components/ui/toaster';
 import { useLoadManager } from '../hooks/use-load-manager';
 
+
 export default function Wrapper() {
   const {
     isLoading,
