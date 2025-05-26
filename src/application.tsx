@@ -6,7 +6,7 @@ import { SplashScreen } from './screens/splash';
 
 import './application.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { LoadProvider } from './features/loads/LoadContext';
+import { LoadProvider } from './features/loads/context/LoadContext';
 
 const main = document.getElementById('main');
 const root = createRoot(main!);

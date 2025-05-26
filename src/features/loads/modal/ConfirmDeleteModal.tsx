@@ -4,6 +4,7 @@ import { Loader2 } from 'lucide-react';
 
 interface ConfirmDeleteModalProps {
   open: boolean;
+  loadId: number | null;
   onClose: () => void;
   onConfirm: () => void;
   isLoading?: boolean;

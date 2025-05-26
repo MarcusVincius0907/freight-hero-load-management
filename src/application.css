@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -68,11 +69,13 @@
 }
 
 
+html {
+  font-family: 'Hanken Grotesk', sans-serif;
+}
+
 body {
   background-color: #121212;
   background-image: url(/square.webp);
   background-position: 0 0;
   background-size: 15px;
-  font-size: 1rem;
-  line-height: 1.5;
 }

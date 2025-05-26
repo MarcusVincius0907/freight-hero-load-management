@@ -27,7 +27,7 @@ interface LoadContextType {
   setSortOrder: (order: SortOrder) => void;
 
   columnFilters: ColumnFilters;
-  setColumnFilters: (filters: ColumnFilters) => void;
+  setColumnFilters: React.Dispatch<React.SetStateAction<ColumnFilters>>;
 
   clearFilters: () => void;
 

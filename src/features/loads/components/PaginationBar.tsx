@@ -6,7 +6,7 @@ import {
     PaginationPrevious,
     PaginationNext,
   } from "@/components/ui/pagination"
-  import { useLoadContext } from "@/features/loads/LoadContext"
+  import { useLoadContext } from "@/features/loads/context/LoadContext"
   
   interface Props {
     totalItems: number

@@ -58,7 +58,7 @@ export default function LoadFormModal({ open, onClose, initialData, onSubmit }: 
         }
     )
       
-  }, [initialData, reset]);
+  }, [initialData, open]);
 
   const handleClose = () => {
     reset();
