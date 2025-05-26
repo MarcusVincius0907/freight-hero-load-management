@@ -1,13 +1,9 @@
-import { fetchLoads } from '@/lib/api';
-import { useQuery } from '@tanstack/react-query';
 import EmptyState from './EmptyState';
 import TableFilters from './TableFilters';
 import Table from './Table';
-import { applySorting, filterByColumns, filterBySearch, paginate } from '../utils/utils';
-import { useLoadContext } from '../context/LoadContext';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback } from 'react';
 import { PaginationBar } from '@/features/loads/components/PaginationBar';
-import { Load, LoadStatus } from '@/types/load';
+import { LoadStatus } from '@/types/load';
 import LoadFormModal, { LoadFormValues } from '../modal/LoadFormModal';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
