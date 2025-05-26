@@ -15,59 +15,25 @@ import { useCreateLoad, useDeleteLoad, useUpdateLoad } from '../api/loadApi';
 import ConfirmDeleteModal from '../modal/ConfirmDeleteModal';
 import LoadSkeleton from './LoadSkeleton';
 import { Toaster } from '@/components/ui/toaster';
+import { useLoadManager } from '../hooks/use-load-manager';
 
 export default function Wrapper() {
   const {
-    search,
-    page,
-    pageSize,
-    setPage,
-    sortKey,
-    sortOrder,
-    columnFilters,
+    isLoading,
+    error,
+    filterOptions,
     modal,
+    deleteModal,
+    totalItems,
+    paginated,
     closeModal,
     openCreateModal,
-    deleteModal,
-    closeDeleteModal
-  } = useLoadContext();
-  const { data, isLoading, error } = useQuery({ queryKey: ['loads'], queryFn: fetchLoads });
+    closeDeleteModal,
+  } = useLoadManager();
 
   const { mutate: createLoad } = useCreateLoad();
   const { mutate: updateLoad } = useUpdateLoad();
   const { mutate: deleteLoad } = useDeleteLoad();
-
-  useEffect(() => {
-    setPage(1);
-  }, [search, columnFilters, sortKey, sortOrder]);
-
-  const columnFiltered = useMemo(() => {
-    return filterByColumns(data ?? [], columnFilters);
-  }, [data, columnFilters]);
-
-  const filtered = useMemo(() => {
-    return filterBySearch(columnFiltered ?? [], search);
-  }, [columnFiltered, search]);
-
-  const sorted = useMemo(() => {
-    return applySorting(filtered, sortKey as keyof Load, sortOrder);
-  }, [filtered, sortKey, sortOrder]);
-
-  const currentPageData = useMemo(() => {
-    return paginate(sorted, page, pageSize);
-  }, [sorted, page, pageSize]);
-
-  const filterOptions = useMemo(() => {
-    const unique = (key: keyof Load) => Array.from(new Set((data ?? []).map((load) => load[key] as string))).sort();
-
-    return {
-      status: unique('status'),
-      origin: unique('origin'),
-      destination: unique('destination'),
-      client_name: unique('client_name'),
-      carrier_name: unique('carrier_name')
-    };
-  }, [data]);
 
   const handleSubmit = useCallback(
     (values: LoadFormValues) => {
@@ -102,10 +68,10 @@ export default function Wrapper() {
             </Button>
           </div>
           <div className="w-full rounded-lg overflow-x-auto bg-surface">
-            <Table data={currentPageData} />
+            <Table data={paginated} />
           </div>
           <div className="mt-4">
-            <PaginationBar totalItems={filtered.length} />
+            <PaginationBar totalItems={totalItems} />
           </div>
         </div>
       </div>
